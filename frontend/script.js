@@ -1,6 +1,27 @@
 const loadButton = document.getElementById("btnLoad");
 const addButton = document.getElementById("btnAdd");
-const API_URL = "http://localhost:3000";
+const themeToggle = document.getElementById("themeToggle");
+const API_URL = "https://fsd-79fb.onrender.com";
+
+function setTheme(theme) {
+    document.body.classList.toggle("dark", theme === "dark");
+    localStorage.setItem("theme", theme);
+}
+
+function toggleTheme() {
+    const current = document.body.classList.contains("dark") ? "dark" : "light";
+    setTheme(current === "dark" ? "light" : "dark");
+}
+
+(function initTheme() {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) {
+        setTheme(storedTheme);
+    } else {
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setTheme(prefersDark ? "dark" : "light");
+    }
+})();
 
 async function loadUsers() {
     const response = await fetch(`${API_URL}/users`);
@@ -65,3 +86,4 @@ async function deleteUser(id) {
 
 loadButton.addEventListener("click", loadUsers);
 addButton.addEventListener("click", addUser);
+themeToggle.addEventListener("click", toggleTheme);

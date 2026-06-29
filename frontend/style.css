@@ -1,19 +1,65 @@
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+    --border: #cccccc;
+    --panel: #f9f9f9;
+    --button-bg: #0077cc;
+    --button-text: #ffffff;
+}
+
+body.dark {
+    --bg: #121212;
+    --text: #f1f1f1;
+    --border: #444444;
+    --panel: #1f1f1f;
+    --button-bg: #3399ff;
+    --button-text: #ffffff;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background: var(--bg);
+    color: var(--text);
 }
 
 input, button {
     margin: 5px 0;
     padding: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+}
+
+button {
+    cursor: pointer;
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid transparent;
+}
+
+button:hover {
+    opacity: 0.95;
+}
+
+.theme-toggle {
+    margin-bottom: 15px;
+    background: transparent;
+    color: var(--text);
+    border-color: var(--border);
+}
+
+input, button, table, th, td {
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 table {
     border-collapse: collapse;
     margin-top: 10px;
+    width: 100%;
 }
 
 th, td {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border);
     padding: 8px;
 }
