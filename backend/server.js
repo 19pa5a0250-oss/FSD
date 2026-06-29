@@ -55,6 +55,10 @@ app.delete("/users/:id", (req, res) => {
     res.json({ message: "User deleted successfully" });
 });
 
+app.get("/", (req, res) => {
+    res.send("Backend is running. Use /users for API access.");
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
